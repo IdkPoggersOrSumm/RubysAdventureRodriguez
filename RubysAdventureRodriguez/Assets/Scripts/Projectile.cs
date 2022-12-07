@@ -14,22 +14,21 @@ public class Projectile : MonoBehaviour
     {
         rigidbody2d.AddForce(direction * force);
     }
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        Debug.Log("projectile Collision with " + other.gameObject);
-        Destroy(gameObject);
-    }
-    void Launch()
-    {
-        GameObject projectileObject = Instantiate(projectilePrefab, rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
-
-        Projectile projectile = projectileObject.GetComponent<Projectile>();
-        projectile.Launch(lookDirection, 300);
-
-        animator.SetTrigger("Launch");
-    }
+   
     void Update()
     {
-        
+        if(transform.position.magnitude > 1000.0f)
+        {
+            Destroy(gameObject);
+        }
+    } 
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        EnemyController e = other.collider.GetComponent<EnemyController>();
+        if (e !=null)
+        {
+            e.Fix();
+        }
+        Destroy(gameObject);
     }
 }
