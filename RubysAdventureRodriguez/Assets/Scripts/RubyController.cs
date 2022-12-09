@@ -59,7 +59,7 @@ public class RubyController : MonoBehaviour
             if (invincibleTimer < 0)
                 isInvincible = false;
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             Launch();
         }
@@ -87,6 +87,8 @@ public class RubyController : MonoBehaviour
         }
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         Debug.Log(currentHealth + "/" + maxHealth);
+
+        UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
 
     }
     void Launch()
