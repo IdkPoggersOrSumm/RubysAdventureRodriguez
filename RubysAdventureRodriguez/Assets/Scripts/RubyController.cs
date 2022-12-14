@@ -6,11 +6,14 @@ using UnityEngine.WSA;
 public class RubyController : MonoBehaviour
 {
     public float speed = 3.0f;
+
     public int maxHealth = 5;
+
     public GameObject projectilePrefab;
 
     public int health { get { return currentHealth; } }
     int currentHealth;
+
     public float timeInvincible = 2.0f;
     bool isInvincible;
     float invincibleTimer;
@@ -22,7 +25,7 @@ public class RubyController : MonoBehaviour
     Animator animator;
     Vector2 lookDirection = new Vector2(1, 0);
 
-    // Start is called before the first frame update
+   
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -88,7 +91,7 @@ public class RubyController : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         Debug.Log(currentHealth + "/" + maxHealth);
 
-        UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
+     UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth); 
 
     }
     void Launch()
